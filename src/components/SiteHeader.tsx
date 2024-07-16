@@ -3,6 +3,7 @@ import {
     NavigationMenuItem,
     NavigationMenuList,
 } from '@/components/ui/navigation-menu';
+import Account from './Account';
 
 const navList: { id: number; label: string; href: string }[] = [
     {
@@ -50,7 +51,7 @@ const SiteHeader = () => {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <div className='flex flex-col'>
+                            <div className="flex flex-col">
                                 <span className="text-white text-[12px]">
                                     +99871
                                 </span>
@@ -59,6 +60,8 @@ const SiteHeader = () => {
                                 </span>
                             </div>
                         </a>
+
+                        <Account />
                     </div>
                 </div>
             </div>
