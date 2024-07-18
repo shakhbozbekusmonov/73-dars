@@ -12,13 +12,11 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import axios from 'axios';
 
 const formSchema = z.object({
-    first_name: z.string().min(2, {
-        message: 'First name must be at least 2 characters.',
-    }),
-    last_name: z.string().min(2, {
-        message: 'Last name must be at least 2 characters.',
+    username: z.string().min(2, {
+        message: 'Username must be at least 2 characters.',
     }),
     email: z
         .string()
@@ -36,36 +34,44 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const RegisterForm = () => {
+const RegisterForm = ({
+    setRegister,
+}: {
+    setRegister: (value: boolean) => void;
+}) => {
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
     });
 
-    function onSubmit(values: FormValues) {
-        console.log(values);
+    async function onSubmit(values: FormValues) {
+        try {
+            const res = await axios.post(
+                'http://127.0.0.1:8000/api/v1/users/signup/',
+                values,
+            );
+
+            console.log(res.data);
+
+            if (res.status === 201) {
+                setRegister(true);
+
+                window.localStorage.setItem('access', res.data.access);
+
+                window.localStorage.setItem('refresh', res.data.refresh);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <FormField
                     control={form.control}
-                    name="first_name"
+                    name="username"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>First Name</FormLabel>
-                            <FormControl>
-                                <Input {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="last_name"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Last Name</FormLabel>
+                            <FormLabel>Username</FormLabel>
                             <FormControl>
                                 <Input {...field} />
                             </FormControl>
