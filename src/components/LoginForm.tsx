@@ -31,8 +31,29 @@ const LoginForm = () => {
         resolver: zodResolver(formSchema),
     });
 
-    function onSubmit(values: FormValues) {
-        console.log(values);
+    async function onSubmit(values: FormValues) {
+        try {
+            const res = await fetch(
+                'http://127.0.0.1:8000/api/v1/users/login/',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: values.email,
+                        password: values.password,
+                    }),
+                },
+            );
+            const data = await res.json();
+            console.log(
+                '🚀 ~ file: LoginForm.tsx:LoginForm ~ onSubmit ~ data',
+                data,
+            );
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <Form {...form}>
