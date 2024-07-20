@@ -1,18 +1,7 @@
-import useSWR from 'swr';
-
-interface User {
-    id: number;
-    name: string;
-}
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import useUsers from './hooks/useUsers';
 
 const App = () => {
-    const {
-        data: users,
-        error,
-        isLoading,
-    } = useSWR('https://jsonplaceholder.typicode.com/users', fetcher);
+    const { data: users, error, isLoading } = useUsers();
 
     if (error) return <p>{error.message}</p>;
 
@@ -20,11 +9,7 @@ const App = () => {
 
     return (
         <>
-            <ul>
-                {users.map((user: User) => (
-                    <li key={user.id}>{user.name}</li>
-                ))}
-            </ul>
+            <ul>{users?.map((user) => <li key={user.id}>{user.name}</li>)}</ul>
         </>
     );
 };
