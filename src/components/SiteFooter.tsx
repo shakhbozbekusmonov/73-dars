@@ -1,13 +1,7 @@
-
 import {
     NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
     NavigationMenuItem,
-    NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
 } from '@/components/ui/navigation-menu';
 
 const navList: { id: number; label: string; href: string }[] = [
@@ -45,9 +39,6 @@ const navList2: { id: number; label: string; href: string }[] = [
         href: '/bu-qanday-ishlaydi',
     },
 ];
-
-
-
 
 const SiteFooter = () => {
     return (

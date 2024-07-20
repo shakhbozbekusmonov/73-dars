@@ -1,8 +1,9 @@
+import LoginForm from '@/components/LoginForm';
+import RegisterForm from '@/components/RegisterForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
 
+import { buttonVariants } from '@/components/ui/button';
 import {
     Dialog,
     DialogContent,
@@ -11,15 +12,19 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
+import VerifyOTPForm from '@/components/VerifyOTPForm';
+import { cn } from '@/lib/utils';
+import { User } from 'lucide-react';
 import { useState } from 'react';
-import VerifyOTPForm from './VerifyOTPForm';
 
 const Account = () => {
     const [isRegister, setRegister] = useState(false);
 
     return (
         <Dialog>
-            <DialogTrigger>Kirish</DialogTrigger>
+            <DialogTrigger className={cn(buttonVariants({ size: 'icon' }))}>
+                <User />
+            </DialogTrigger>
 
             <DialogContent>
                 <DialogHeader>
