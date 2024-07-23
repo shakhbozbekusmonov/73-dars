@@ -30,7 +30,7 @@ const Ichimliklar = () => {
                         <img src="/images/cola.png" alt="Sprite" />
                         <div className="ml-[43px]">
                             <h3 className="font-medium text-2xl text-neutral-800 mb-[10px]">
-                            Coca cola 1,5L
+                                Coca cola 1,5L
                             </h3>
                             <p className="text-sm font-normal text-neutral-800">
                                 Горячая закуска с митболами из говядины,
@@ -66,7 +66,6 @@ const Ichimliklar = () => {
                             </div>
                         </div>
                     </li>
-          
                 </ul>
             </div>
         </section>
