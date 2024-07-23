@@ -1,12 +1,26 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 export const axiosInstance = axios.create({
-    baseURL: 'https://5bdc-93-188-83-214.ngrok-free.app/api/v1',
-    headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${JSON.stringify(localStorage.getItem('access'))}`,
-    },
+    baseURL: 'http://127.0.0.1:8000/api/v1',
 });
+
+const getToken = (): string | null => {
+    // Retrieve the token from storage (e.g., localStorage, sessionStorage)
+    return localStorage.getItem('access');
+};
+
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = getToken();
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    },
+);
 
 class APIClient<T> {
     endpoint: string;

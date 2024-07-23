@@ -44,9 +44,9 @@ const SiteHeader = () => {
                         </NavigationMenu>
                     </div>
 
-                    <div className="w-full lg:w-[40%] flex items-center justify-center">
+                    <div className="w-full lg:w-[40%] flex gap-5 items-center justify-center">
                         <a
-                            className='flex items-center before:inline-block before:border-[""] before:w-6 before:h-6 before:bg-[url("/images/phone-icon.svg")] before:mr-4'
+                            className='flex items-center before:inline-block before:border-[""] before:w-6 before:h-6 before:bg-[url("/icons/phone.svg")] before:mr-4'
                             href="tel:+998712005400"
                             target="_blank"
                             rel="noreferrer"
@@ -57,6 +57,22 @@ const SiteHeader = () => {
                                 </span>
                                 <span className="text-white text-2xl font-bold">
                                     200-54-00
+                                </span>
+                            </div>
+                        </a>
+
+                        <a
+                            className='flex items-center before:inline-block before:border-[""] before:w-6 before:h-6 before:bg-[url("/icons/cart.svg")] before:mr-4'
+                            href="tel:+998712005400"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <div className="flex flex-col">
+                                <span className="text-white text-2xl font-bold">
+                                    Korzina
+                                </span>
+                                <span className="text-white text-[12px]">
+                                    0 uzs
                                 </span>
                             </div>
                         </a>

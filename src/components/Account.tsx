@@ -13,12 +13,17 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import VerifyOTPForm from '@/components/VerifyOTPForm';
+import useProfile from '@/hooks/useProfile';
 import { cn } from '@/lib/utils';
 import { User } from 'lucide-react';
 import { useState } from 'react';
+import UserProfile from './UserProfile';
 
 const Account = () => {
     const [isRegister, setRegister] = useState(false);
+    const { data: user } = useProfile();
+
+    if (user) return <UserProfile />;
 
     return (
         <Dialog>
