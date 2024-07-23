@@ -30,7 +30,7 @@ const SiteHeader = () => {
                 <div className="flex justify-between items-center">
                     <div className="w-full lg:w-[60%] flex justify-between items-center">
                         <a href="/">
-                            <img src="/images/logo.svg" alt="" />
+                        ``    <img src="/images/logo.svg" alt="" />
                         </a>
 
                         <NavigationMenu>
