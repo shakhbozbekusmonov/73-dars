@@ -41,7 +41,7 @@ const LoginForm = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        email: values.email,
+                        user_input: values.email,
                         password: values.password,
                     }),
                 },
@@ -51,6 +51,11 @@ const LoginForm = () => {
                 '🚀 ~ file: LoginForm.tsx:LoginForm ~ onSubmit ~ data',
                 data,
             );
+
+            if (res.ok) {
+                window.localStorage.setItem('access', data.access);
+                window.localStorage.setItem('refresh', data.refresh);
+            }
         } catch (error) {
             console.log(error);
         }
