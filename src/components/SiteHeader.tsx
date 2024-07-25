@@ -3,6 +3,7 @@ import {
     NavigationMenuItem,
     NavigationMenuList,
 } from '@/components/ui/navigation-menu';
+import style from '@/styles/SiteHeader.module.css';
 import Account from './Account';
 
 const navList: { id: number; label: string; href: string }[] = [
@@ -30,8 +31,10 @@ const SiteHeader = () => {
                 <div className="flex justify-between items-center">
                     <div className="w-full lg:w-[60%] flex justify-between items-center">
                         <a href="/">
-                        ``    <img src="/images/logo.svg" alt="" />
+                            <img src="/images/logo.svg" alt="" />
                         </a>
+
+                        <h1 className={style.title}>MaxWay</h1>
 
                         <NavigationMenu>
                             <NavigationMenuList className="gap-10">

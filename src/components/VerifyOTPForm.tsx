@@ -5,13 +5,11 @@ import {
     InputOTPSlot,
 } from '@/components/ui/input-otp';
 import { Label } from '@/components/ui/label';
-import { useEffect, useState } from 'react';
+import { Context as AccountContext } from '@/context/account.provider';
+import { useContext, useEffect, useState } from 'react';
 
-const VerifyOTPForm = ({
-    setRegister,
-}: {
-    setRegister: (value: boolean) => void;
-}) => {
+const VerifyOTPForm = () => {
+    const { changeRegister } = useContext(AccountContext);
     const [value, setValue] = useState('');
     const [timeLeft, setTimeLeft] = useState(120); // 2 minutes in seconds
 
@@ -69,7 +67,7 @@ const VerifyOTPForm = ({
 
             if (res.ok) {
                 console.log('OTP verified successfully');
-				setRegister(false);
+                changeRegister();
             } else {
                 console.log('Failed to verify OTP');
             }

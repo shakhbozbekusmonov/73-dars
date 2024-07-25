@@ -12,16 +12,17 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
+import UserProfile from '@/components/UserProfile';
 import VerifyOTPForm from '@/components/VerifyOTPForm';
+import { Context as AccountContext } from '@/context/account.provider';
 import useProfile from '@/hooks/useProfile';
 import { cn } from '@/lib/utils';
 import { User } from 'lucide-react';
-import { useState } from 'react';
-import UserProfile from './UserProfile';
+import { useContext } from 'react';
 
 const Account = () => {
-    const [isRegister, setRegister] = useState(false);
     const { data: user } = useProfile();
+    const { isRegister } = useContext(AccountContext);
 
     if (user) return <UserProfile />;
 
@@ -40,7 +41,7 @@ const Account = () => {
                 </DialogHeader>
 
                 {isRegister ? (
-                    <VerifyOTPForm setRegister={setRegister} />
+                    <VerifyOTPForm />
                 ) : (
                     <Tabs defaultValue="register">
                         <TabsList className="grid w-full grid-cols-2">
@@ -53,7 +54,7 @@ const Account = () => {
                                     <CardTitle>Register</CardTitle>
                                 </CardHeader>
                                 <CardContent className="space-y-2">
-                                    <RegisterForm setRegister={setRegister} />
+                                    <RegisterForm />
                                 </CardContent>
                             </Card>
                         </TabsContent>

@@ -12,7 +12,9 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Context as AccountContext } from '@/context/account.provider';
 import axios from 'axios';
+import { useContext } from 'react';
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -34,11 +36,8 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const RegisterForm = ({
-    setRegister,
-}: {
-    setRegister: (value: boolean) => void;
-}) => {
+const RegisterForm = () => {
+    const { changeRegister } = useContext(AccountContext);
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
     });
@@ -53,7 +52,7 @@ const RegisterForm = ({
             console.log(res.data);
 
             if (res.status === 201) {
-                setRegister(true);
+                changeRegister();
 
                 window.localStorage.setItem('access', res.data.access);
 
